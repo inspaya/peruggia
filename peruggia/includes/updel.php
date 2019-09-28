@@ -23,13 +23,13 @@ if(!isset($_SESSION['admin'])){
 
 if(isset($_GET['pic_id'])){
   if($guard_sqli){
-    $filequery = mysqli_query("SELECT pic FROM picdata WHERE ID LIKE ".(int)$_GET['pic_id'], $conx);
+    $filequery = mysqli_query($conx, "SELECT pic FROM picdata WHERE ID LIKE ".(int)$_GET['pic_id']);
   }else{
-    $filequery = mysqli_query("SELECT pic FROM picdata WHERE ID LIKE ".$_GET['pic_id'], $conx);
+    $filequery = mysqli_query($conx, "SELECT pic FROM picdata WHERE ID LIKE ".$_GET['pic_id']);
   }
   $delfile = mysqli_fetch_array($filequery);
   unlink("images/".$delfile['pic']);
-  mysqli_query("DELETE FROM picdata WHERE pic LIKE '".$delfile['pic']."'", $conx);
+  mysqli_query($conx, "DELETE FROM picdata WHERE pic LIKE '".$delfile['pic']."'");
   echo "<div align=center><h5>Picture Deleted</h5></div><br>";
 }
 
@@ -55,7 +55,7 @@ if(isset($_GET['upload'])){
     $path = htmlentities($path);
   }
   move_uploaded_file($_FILES['upfile']['tmp_name'], $path);
-  mysqli_query("INSERT INTO picdata (pic,uploader) VALUES ('".$file."', '".$uploader."')", $conx);
+  mysqli_query($conx, "INSERT INTO picdata (pic,uploader) VALUES ('".$file."', '".$uploader."')");
   if($guard_pers_xss){
     echo "<div align=center><h5>Picture \"".htmlentities(basename($file))."\" Uploaded</h5></div><br>";
   }else{
@@ -87,7 +87,7 @@ Choose a file to upload:<br>
 <legend><b>Delete</b></legend>
 <?php
 foreach($images as $pic){
-$delquery = mysqli_query("SELECT ID FROM picdata WHERE pic LIKE '".$pic."'", $conx);
+$delquery = mysqli_query($conx, "SELECT ID FROM picdata WHERE pic LIKE '".$pic."'");
 $data = mysqli_fetch_array($delquery);
 ?>
 <a href=<?php echo "images/".$pic; ?>><img src="images/<?php echo $pic; ?>" border=1></a><br>

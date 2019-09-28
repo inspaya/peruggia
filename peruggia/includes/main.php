@@ -40,7 +40,7 @@ echo "</fieldset>";
 
 foreach($images as $pic){
 
-$data = mysqli_query("SELECT * FROM picdata WHERE pic LIKE '".$pic."'", $conx);
+$data = mysqli_query($conx, "SELECT * FROM picdata WHERE pic LIKE '".$pic."'");
 $data = mysqli_fetch_array($data);
 
 ?>

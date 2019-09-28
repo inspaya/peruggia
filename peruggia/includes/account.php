@@ -28,7 +28,7 @@ if(isset($_GET['changepass'])){
   }else{
     $oldpass = $_SESSION['password'];
     $newpass = $_POST['newpass'];
-    mysqli_query("UPDATE users SET password='".$newpass."' WHERE password='".$oldpass."'", $conx);
+    mysqli_query($conx, "UPDATE users SET password='".$newpass."' WHERE password='".$oldpass."'");
     session_destroy();
     header("Location: ".$peruggia_root."?action=account");
   }
@@ -43,7 +43,7 @@ if(isset($_GET['changepass'])){
     $newuserpass = $_POST['newuserpass'];
   }
 
-  mysqli_query("INSERT INTO users (username,password) VALUES ('".$newuser."','".$newuserpass."')", $conx);
+  mysqli_query($conx, "INSERT INTO users (username,password) VALUES ('".$newuser."','".$newuserpass."')");
 
   header("Location: ".$peruggia_root."?action=account");
 
@@ -53,9 +53,9 @@ if(isset($_GET['changepass'])){
     header("Location: ".$peruggia_root."?action=account");
   }else{
     if($guard_sqli){
-      mysqli_query("DELETE FROM users WHERE username='".mysqli_real_escape_string($_GET['deleteuser'])."'", $conx);
+      mysqli_query($conx, "DELETE FROM users WHERE username='".mysqli_real_escape_string($_GET['deleteuser'])."'");
     }else{
-      mysqli_query("DELETE FROM users WHERE username='".$_GET['deleteuser']."'", $conx);
+      mysqli_query($conx, "DELETE FROM users WHERE username='".$_GET['deleteuser']."'");
     }
     header("Location: ".$peruggia_root."?action=account");
   }
@@ -91,7 +91,7 @@ if(isset($_GET['changepass'])){
   <table cellpadding=2 cellspacing=2 width=100%>
   <?php
 
-$users = mysqli_query("SELECT username FROM users", $conx);
+$users = mysqli_query($conx, "SELECT username FROM users");
 
 $c = 0;
 while($user = mysqli_fetch_array($users)){
