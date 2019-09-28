@@ -40,8 +40,8 @@ if(isset($_GET['upload'])){
     $file = $_FILES['upfile']['name'];
   }
   if($guard_sqli){
-    $path = "images/".mysqli_real_escape_string(basename($file));
-    $uploader = mysqli_real_escape_string($_SESSION['username']);
+    $path = "images/".mysqli_real_escape_string($conx, basename($file));
+    $uploader = mysqli_real_escape_string($conx, $_SESSION['username']);
   }else{
     $path = "images/".basename($file);
     $uploader = $_SESSION['username'];

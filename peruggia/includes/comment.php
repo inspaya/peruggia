@@ -40,7 +40,7 @@ if(isset($_GET['postcomment'])){
     $comment = $_POST['comment']."<br><br>";
   }
   if($guard_sqli){
-    $comment = mysqli_real_escape_string($comment);
+    $comment = mysqli_real_escape_string($conx, $comment);
   }
   if($guard_sqli){
     $crntquery = mysqli_query($conx, "SELECT comments FROM picdata WHERE ID LIKE ".(int)$_GET['pic_id']);

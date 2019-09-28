@@ -23,7 +23,7 @@ if(isset($_SESSION['admin']) && ($_SESSION['admin']==1)){
 
 }elseif(isset($_GET['check']) && ($_GET['check']==1)){
   if($guard_auth_sqli){
-    $creds = mysqli_query($conx, "SELECT * FROM users WHERE username='".mysqli_real_escape_string($_POST['username'])."' AND password='".$_POST['password']."'");
+    $creds = mysqli_query($conx, "SELECT * FROM users WHERE username='".mysqli_real_escape_string($conx, $_POST['username'])."' AND password='".$_POST['password']."'");
   }else{
     $creds = mysqli_query($conx, "SELECT * FROM users WHERE username='".$_POST['username']."' AND password='".$_POST['password']."'");
   }

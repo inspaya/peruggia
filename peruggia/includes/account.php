@@ -36,8 +36,8 @@ if(isset($_GET['changepass'])){
 }elseif(isset($_GET['adduser'])){
 
   if($guard_sqli){
-    $newuser = mysqli_real_escape_string($_POST['newuser']);
-    $newuserpass = mysqli_real_escape_string($_POST['newuserpass']);
+    $newuser = mysqli_real_escape_string($conx, $_POST['newuser']);
+    $newuserpass = mysqli_real_escape_string($conx, $_POST['newuserpass']);
   }else{
     $newuser = $_POST['newuser'];
     $newuserpass = $_POST['newuserpass'];
@@ -53,7 +53,7 @@ if(isset($_GET['changepass'])){
     header("Location: ".$peruggia_root."?action=account");
   }else{
     if($guard_sqli){
-      mysqli_query($conx, "DELETE FROM users WHERE username='".mysqli_real_escape_string($_GET['deleteuser'])."'");
+      mysqli_query($conx, "DELETE FROM users WHERE username='".mysqli_real_escape_string($conx, $_GET['deleteuser'])."'");
     }else{
       mysqli_query($conx, "DELETE FROM users WHERE username='".$_GET['deleteuser']."'");
     }
