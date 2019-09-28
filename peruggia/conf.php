@@ -19,14 +19,14 @@
 
 //MySQL
 $mysql_host = 		"localhost";
-$mysql_user = 		"images";
-$mysql_pass = 		"";
-$mysql_db = 		"images";
+$mysql_user = 		$_ENV["username"];
+$mysql_pass = 		$_ENV["password"];
+$mysql_db = 		$_ENV["dbname"];
 
 //General
-$title = 		"Gallery";
+$title = 		"INSPAYA AppSec Workshop";
 $version = 		"1.2";
-$peruggia_root = 	"http://inception.local/";
+$peruggia_root = 	"http://localhost/peruggia";
 error_reporting(0);	// You may or may not want to see these, your choice
 
 //Vulnerabilities (true or false)
