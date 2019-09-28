@@ -28,7 +28,7 @@ if(isset($_GET['changepass'])){
   }else{
     $oldpass = $_SESSION['password'];
     $newpass = $_POST['newpass'];
-    mysql_query("UPDATE users SET password='".$newpass."' WHERE password='".$oldpass."'", $conx);
+    mysqli_query("UPDATE users SET password='".$newpass."' WHERE password='".$oldpass."'", $conx);
     session_destroy();
     header("Location: ".$peruggia_root."?action=account");
   }
@@ -36,14 +36,14 @@ if(isset($_GET['changepass'])){
 }elseif(isset($_GET['adduser'])){
 
   if($guard_sqli){
-    $newuser = mysql_real_escape_string($_POST['newuser']);
-    $newuserpass = mysql_real_escape_string($_POST['newuserpass']);
+    $newuser = mysqli_real_escape_string($_POST['newuser']);
+    $newuserpass = mysqli_real_escape_string($_POST['newuserpass']);
   }else{
     $newuser = $_POST['newuser'];
     $newuserpass = $_POST['newuserpass'];
   }
 
-  mysql_query("INSERT INTO users (username,password) VALUES ('".$newuser."','".$newuserpass."')", $conx);
+  mysqli_query("INSERT INTO users (username,password) VALUES ('".$newuser."','".$newuserpass."')", $conx);
 
   header("Location: ".$peruggia_root."?action=account");
 
@@ -53,9 +53,9 @@ if(isset($_GET['changepass'])){
     header("Location: ".$peruggia_root."?action=account");
   }else{
     if($guard_sqli){
-      mysql_query("DELETE FROM users WHERE username='".mysql_real_escape_string($_GET['deleteuser'])."'", $conx);
+      mysqli_query("DELETE FROM users WHERE username='".mysqli_real_escape_string($_GET['deleteuser'])."'", $conx);
     }else{
-      mysql_query("DELETE FROM users WHERE username='".$_GET['deleteuser']."'", $conx);
+      mysqli_query("DELETE FROM users WHERE username='".$_GET['deleteuser']."'", $conx);
     }
     header("Location: ".$peruggia_root."?action=account");
   }
@@ -91,10 +91,10 @@ if(isset($_GET['changepass'])){
   <table cellpadding=2 cellspacing=2 width=100%>
   <?php
 
-$users = mysql_query("SELECT username FROM users", $conx);
+$users = mysqli_query("SELECT username FROM users", $conx);
 
 $c = 0;
-while($user = mysql_fetch_array($users)){
+while($user = mysqli_fetch_array($users)){
 
   echo "<tr>";
   if(($c % 2) == 0){
