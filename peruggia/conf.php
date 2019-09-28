@@ -31,15 +31,15 @@ error_reporting(E_ALL);	// You may or may not want to see these, your choice
 
 //Vulnerabilities (true or false)
 //NOTE: disabling some vulnerabilities may render others useless
-$guard_pers_xss = 	true; //Block persistent cross site scripting
-$guard_refl_xss = 	true; //Block reflected cross site scripting
-$guard_csrf = 	        true; //Block cross site request forgery //Blocker not yet implemented
-$guard_sesfix = 	true; //Block session fixation //Blocker not yet implemented
-$guard_sqli = 		true; //Block SQL injection
-$guard_auth_sqli = 	true; //Block authentication bypass SQL injection
-$guard_lfi = 		true; //Block local file inclusions
-$guard_rfi = 		true; //Block remote file inclusions
-$guard_fuv = 		true; //Block file upload vulnerabilities
+//$guard_pers_xss = 	true; //Block persistent cross site scripting
+//$guard_refl_xss = 	true; //Block reflected cross site scripting
+//$guard_csrf = 	        true; //Block cross site request forgery //Blocker not yet implemented
+//$guard_sesfix = 	true; //Block session fixation //Blocker not yet implemented
+//$guard_sqli = 		true; //Block SQL injection
+//$guard_auth_sqli = 	true; //Block authentication bypass SQL injection
+//$guard_lfi = 		true; //Block local file inclusions
+//$guard_rfi = 		true; //Block remote file inclusions
+//$guard_fuv = 		true; //Block file upload vulnerabilities
 $fu_types = array(	//Allowed file upload types (mime types)
 	"image/gif",
 	"image/jpeg",
